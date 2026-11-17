@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WHO'S NEXT? | Act the Career. Break the Mold.</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Crisp Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        navy: {
+                            800: '#162447',
+                            900: '#0F172A',
+                        },
+                        coral: {
+                            500: '#FF5A5F',
+                            600: '#E0484D',
+                        },
+                        marigold: {
+                            400: '#FBBF24',
+                            500: '#F59E0B',
+                        },
+                        sage: {
+                            100: '#E6F4EA',
+                            500: '#2E7D32',
+                            600: '#1B5E20',
+                        },
+                        cream: '#FAF9F6',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom 3D Card Flip Mechanics & Subtle Animations */
+        body {
+            background-color: #FAF9F6;
+            color: #0F172A;
+            overflow-x: hidden;
+        }
+        
+        .perspective-1000 {
+            perspective: 1000px;
+        }
+
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transform-style: preserve-3d;
+        }
+
+        .card-flipped {
+            transform: rotateY(180deg);
+        }
+
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 1.5rem;
+        }
+
+        .card-back {
+            transform: rotateY(0deg);
+        }
+
+        .card-front {
+            transform: rotateY(180deg);
+        }
+
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px) rotate(-3deg); }
+            50% { transform: translateY(-10px) rotate(-1deg); }
+        }
+
+        @keyframes floatSlowReverse {
+            0%, 100% { transform: translateY(0px) rotate(4deg); }
+            50% { transform: translateY(-12px) rotate(2deg); }
+        }
+
+        .animate-float-1 {
+            animation: floatSlow 5s ease-in-out infinite;
+        }
+
+        .animate-float-2 {
+            animation: floatSlowReverse 6s ease-in-out infinite;
+        }
+
+        /* Custom subtle dot pattern for hero & cards */
+        .bg-dot-pattern {
+            background-image: radial-gradient(#CBD5E1 1.5px, transparent 1.5px);
+            background-size: 24px 24px;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-coral-500 selection:text-white">
+
+    <!-- Top Announcement Banner -->
+    <div class="bg-navy-900 text-white text-xs sm:text-sm py-2.5 px-4 text-center font-medium">
+        <span class="inline-flex items-center gap-2">
+            <span class="bg-marigold-400 text-navy-900 font-bold px-2 py-0.5 rounded-full text-[11px] uppercase tracking-wider">Pre-Launch</span>
+            <span>Official Title Reveal Coming Soon! Reserve your 100% recycled First Edition deck today for <strong>£6.99</strong>.</span>
+        </span>
+    </div>
+
+    <!-- Sticky Navigation -->
+    <header class="sticky top-0 z-40 bg-cream/90 backdrop-blur-md border-b border-slate-200/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
+            <!-- Brand Placeholder Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-navy-900 text-white flex items-center justify-center font-display font-extrabold text-xl shadow-md group-hover:bg-coral-500 transition-colors">
+                    ?
+                </div>
+                <div class="flex flex-col">
+                    <div class="flex items-center gap-2">
+                        <span class="font-display font-extrabold text-lg sm:text-xl tracking-tight text-navy-900">WHO'S NEXT?</span>
+                        <span class="hidden md:inline-block bg-amber-100 text-amber-800 border border-amber-300 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wide">
+                            Name Reveal Soon
+                        </span>
+                    </div>
+                    <span class="text-[11px] text-slate-500 font-medium hidden sm:block">The Career-Smashing Party Game</span>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation Links -->
+            <nav class="hidden lg:flex items-center gap-8 text-sm font-semibold text-slate-700">
+                <a href="#how-to-play" class="hover:text-coral-500 transition-colors">Play Virtual Hand</a>
+                <a href="#educational-value" class="hover:text-coral-500 transition-colors">Why Parents Love It</a>
+                <a href="#eco-value" class="hover:text-coral-500 transition-colors">£6.99 Eco-Promise</a>
+                <a href="#investors" class="inline-flex items-center gap-1.5 text-navy-900 bg-slate-200/70 hover:bg-slate-200 px-3.5 py-1.5 rounded-full transition-colors">
+                    <i class="fa-solid fa-chart-line text-sage-600 text-xs"></i>
+                    <span>Investor Corner</span>
+                </a>
+            </nav>
+
+            <!-- Action Buttons -->
+            <div class="flex items-center gap-3">
+                <button onclick="openCartDrawer()" class="relative bg-coral-500 hover:bg-coral-600 text-white font-bold text-sm px-4 sm:px-5 py-2.5 rounded-xl shadow-md shadow-coral-500/20 transition-all active:scale-95 flex items-center gap-2">
+                    <span>Pre-Order £6.99</span>
+                    <span id="nav-cart-badge" class="hidden bg-navy-900 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">1</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 1. HERO SECTION -->
+    <section class="relative pt-10 pb-20 lg:pt-20 lg:pb-28 overflow-hidden bg-dot-pattern">
+        <!-- Decorative Ambient Blobs -->
+        <div class="absolute top-10 left-10 w-64 h-64 bg-marigold-400/20 rounded-full blur-3xl -z-10"></div>
+        <div class="absolute bottom-10 right-10 w-80 h-80 bg-coral-500/15 rounded-full blur-3xl -z-10"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+                
+                <!-- Left Copy Column -->
+                <div class="lg:col-span-7 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 bg-white border border-slate-200 shadow-sm px-3.5 py-1.5 rounded-full mb-6">
+                        <span class="w-2 h-2 rounded-full bg-sage-500 animate-pulse"></span>
+                        <span class="text-xs font-bold uppercase tracking-wider text-slate-700">100% Recycled • Ages 6+ • 3–10 Players</span>
+                    </div>
+
+                    <h1 class="font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl text-navy-900 tracking-tight leading-[1.1] mb-6">
+                        Act Out Bold Careers. <br>
+                        <span class="text-coral-500">Smash Stereotypes.</span> <br>
+                        Laugh Out Loud.
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto lg:mx-0 leading-relaxed mb-8">
+                        Pick one <strong class="text-navy-900">Profession Card</strong> and one <strong class="text-navy-900">Challenge Card</strong>. Can you perform brain surgery <em>in slow motion</em>? Or lead a construction crew <em>like a Shakespearean actor</em>? Designed to spark curiosity in kids, delight parents, and leave zero plastic footprint.
+                    </p>
+
+                    <!-- Dual Audience CTAs -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-10">
+                        <button onclick="openCartDrawer()" class="w-full sm:w-auto bg-coral-500 hover:bg-coral-600 text-white font-bold text-base px-8 py-4 rounded-2xl shadow-lg shadow-coral-500/25 transition-all hover:-translate-y-0.5 flex items-center justify-center gap-2.5">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                            <span>Pre-Order for £6.99</span>
+                        </button>
+                        <a href="#investors" class="w-full sm:w-auto bg-navy-900 hover:bg-navy-800 text-white font-bold text-base px-8 py-4 rounded-2xl shadow-lg shadow-navy-900/15 transition-all hover:-translate-y-0.5 flex items-center justify-center gap-2.5">
+                            <i class="fa-solid fa-briefcase text-marigold-400"></i>
+                            <span>Investor Deck & Metrics</span>
+                        </a>
+                    </div>
+
+                    <!-- Trust Strip -->
+                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-6 text-xs sm:text-sm font-semibold text-slate-600">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-recycle text-sage-600 text-base"></i>
+                            <span>FSC 100% Recycled Card</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-graduation-cap text-navy-900 text-base"></i>
+                            <span>Educator-Reviewed Prompts</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-tag text-coral-500 text-base"></i>
+                            <span>Accessible £6.99 RRP</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Visual Showcase (Floating Sample Cards) -->
+                <div class="lg:col-span-5 relative flex items-center justify-center min-h-[360px] sm:min-h-[420px]">
+                    <!-- Card 1: Profession -->
+                    <div class="animate-float-1 w-56 sm:w-64 bg-white rounded-3xl p-5 shadow-2xl border-2 border-navy-900/10 transform -translate-x-10 sm:-translate-x-14 -translate-y-4 z-10">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="bg-navy-900 text-white text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-full">Profession Deck</span>
+                            <span class="text-xs font-bold text-slate-400">#014</span>
+                        </div>
+                        <div class="w-full h-32 rounded-2xl bg-sky-100 flex items-center justify-center text-5xl mb-4 border border-sky-200">
+                            🚀
+                        </div>
+                        <h3 class="font-display font-extrabold text-xl text-navy-900 mb-1">Rocket Engineer</h3>
+                        <p class="text-xs text-slate-500 leading-relaxed">Designs spacecraft propulsion systems and calculates orbital trajectories.</p>
+                    </div>
+
+                    <!-- Plus Sign Connector -->
+                    <div class="z-30 w-12 h-12 rounded-full bg-marigold-400 text-navy-900 font-display font-extrabold text-2xl flex items-center justify-center shadow-lg border-4 border-cream">
+                        +
+                    </div>
+
+                    <!-- Card 2: Challenge -->
+                    <div class="animate-float-2 w-56 sm:w-64 bg-coral-500 text-white rounded-3xl p-5 shadow-2xl border-2 border-white/20 transform translate-x-10 sm:translate-x-14 translate-y-8 z-20">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="bg-white text-coral-600 text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-full">Challenge Deck</span>
+                            <span class="text-xs font-bold text-white/70">#042</span>
+                        </div>
+                        <div class="w-full h-32 rounded-2xl bg-white/15 backdrop-blur-sm flex items-center justify-center text-5xl mb-4 border border-white/20">
+                            🐢
+                        </div>
+                        <h3 class="font-display font-extrabold text-xl text-white mb-1">In Slow Motion</h3>
+                        <p class="text-xs text-white/90 leading-relaxed">Perform every movement and facial expression at 0.25x speed!</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. HOW TO PLAY & INTERACTIVE VIRTUAL HAND DEMO -->
+    <section id="how-to-play" class="py-20 bg-white border-y border-slate-200/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <span class="text-coral-500 font-bold text-xs uppercase tracking-widest">Simple Rules, Endless Replayability</span>
+                <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-navy-900 mt-2 mb-4">Two Decks. One Unforgettable Performance.</h2>
+                <p class="text-slate-600 text-base sm:text-lg">
+                    No board, no complicated scoring sheets, and zero screen time. Learn how to play in 30 seconds—or try drawing a live hand right below!
+                </p>
+            </div>
+
+            <!-- 3-Step Visual Mechanics -->
+            <div class="grid md:grid-cols-3 gap-6 mb-16">
+                <div class="bg-cream rounded-3xl p-7 border border-slate-200/70">
+                    <div class="w-12 h-12 rounded-2xl bg-navy-900 text-white font-display font-extrabold text-xl flex items-center justify-center mb-5">1</div>
+                    <h3 class="font-display font-bold text-xl text-navy-900 mb-2">Draw One of Each</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">Pick 1 card from the <strong>Profession Deck</strong> (what you are) and 1 card from the <strong>Challenge Deck</strong> (how you must act).</p>
+                </div>
+                <div class="bg-cream rounded-3xl p-7 border border-slate-200/70">
+                    <div class="w-12 h-12 rounded-2xl bg-coral-500 text-white font-display font-extrabold text-xl flex items-center justify-center mb-5">2</div>
+                    <h3 class="font-display font-bold text-xl text-navy-900 mb-2">Act Without Saying the Job</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">Combine the career and the twist! Use body language, props around the room, and clues without naming the profession.</p>
+                </div>
+                <div class="bg-cream rounded-3xl p-7 border border-slate-200/70">
+                    <div class="w-12 h-12 rounded-2xl bg-sage-600 text-white font-display font-extrabold text-xl flex items-center justify-center mb-5">3</div>
+                    <h3 class="font-display font-bold text-xl text-navy-900 mb-2">Guess & Spark Curiosity</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">Players shout out guesses! Every card includes a fun "Did You Know?" career fact to inspire kids after the round.</p>
+                </div>
+            </div>
+
+            <!-- INTERACTIVE WIDGET: TRY A VIRTUAL HAND -->
+            <div class="bg-navy-900 rounded-[2.5rem] p-6 sm:p-10 lg:p-12 text-white shadow-2xl relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-96 h-96 bg-coral-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="absolute bottom-0 left-0 w-96 h-96 bg-marigold-400/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                <div class="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-10">
+                    <!-- Left Controls -->
+                    <div class="lg:w-5/12 text-center lg:text-left">
+                        <div class="inline-flex items-center gap-2 bg-white/10 px-3 py-1 rounded-full text-marigold-400 text-xs font-bold uppercase tracking-wider mb-4">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                            <span>Interactive Demo</span>
+                        </div>
+                        <h3 class="font-display font-extrabold text-2xl sm:text-3xl mb-3">Try a Virtual Hand</h3>
+                        <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
+                            Click the button below to draw a random <strong>Profession</strong> and <strong>Challenge</strong> combo from our First Edition deck. Tap either card individually to flip it!
+                        </p>
+                        
+                        <div class="flex flex-col sm:flex-row lg:flex-col gap-3">
+                            <button id="draw-hand-btn" onclick="drawVirtualHand()" class="bg-marigold-400 hover:bg-marigold-500 text-navy-900 font-display font-extrabold text-base px-7 py-4 rounded-2xl shadow-lg transition-all active:scale-95 flex items-center justify-center gap-2.5">
+                                <i class="fa-solid fa-shuffle"></i>
+                                <span>Draw New Hand</span>
+                            </button>
+                            <button onclick="flipAllCards()" class="bg-white/10 hover:bg-white/20 text-white font-semibold text-sm px-6 py-3 rounded-xl transition-colors">
+                                Flip Both Cards
+                            </button>
+                        </div>
+
+                        <div id="combo-prompt-box" class="mt-6 p-4 rounded-2xl bg-white/5 border border-white/10 text-left hidden">
+                            <p class="text-xs uppercase tracking-wider text-marigold-400 font-bold mb-1">Your Acting Prompt:</p>
+                            <p id="combo-prompt-text" class="text-sm sm:text-base font-medium text-white"></p>
+                        </div>
+                    </div>
+
+                    <!-- Right 3D Flip Cards Container -->
+                    <div class="lg:w-7/12 w-full grid sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
+                        
+                        <!-- PROFESSION CARD (3D FLIP) -->
+                        <div class="perspective-1000 h-80 sm:h-96 cursor-pointer group" onclick="toggleSingleCard('prof')">
+                            <div id="prof-card-inner" class="card-inner card-flipped">
+                                <!-- Back of Card -->
+                                <div class="card-face card-back bg-gradient-to-br from-navy-800 to-slate-900 border-2 border-white/20 p-6 flex flex-col items-center justify-center text-center shadow-xl">
+                                    <div class="w-16 h-16 rounded-2xl bg-white/10 flex items-center justify-center text-3xl text-marigold-400 mb-4">
+                                        <i class="fa-solid fa-briefcase"></i>
+                                    </div>
+                                    <span class="font-display font-extrabold text-lg tracking-wider uppercase text-white">Profession</span>
+                                    <span class="text-xs text-slate-400 mt-1">Tap to reveal</span>
+                                </div>
+
+                                <!-- Front of Card -->
+                                <div class="card-face card-front bg-white text-navy-900 p-6 flex flex-col justify-between shadow-xl border-4 border-sky-400">
+                                    <div class="flex items-center justify-between">
+                                        <span class="bg-navy-900 text-white text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-full">Profession</span>
+                                        <span id="prof-category" class="text-xs font-bold text-sky-600">STEM & Medicine</span>
+                                    </div>
+                                    <div class="my-auto text-center py-2">
+                                        <div id="prof-emoji" class="text-6xl mb-3 transition-transform group-hover:scale-110">🧠</div>
+                                        <h4 id="prof-title" class="font-display font-extrabold text-2xl text-navy-900 mb-2">Neurosurgeon</h4>
+                                        <p id="prof-desc" class="text-xs text-slate-600 leading-relaxed">Performs delicate operations on the human brain and nervous system.</p>
+                                    </div>
+                                    <div class="pt-3 border-t border-slate-100 text-[11px] text-slate-500 flex items-center justify-between">
+                                        <span><i class="fa-solid fa-lightbulb text-marigold-500 mr-1"></i> Anyone can be this!</span>
+                                        <span class="font-bold text-navy-900">Tap to flip</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- CHALLENGE CARD (3D FLIP) -->
+                        <div class="perspective-1000 h-80 sm:h-96 cursor-pointer group" onclick="toggleSingleCard('chal')">
+                            <div id="chal-card-inner" class="card-inner card-flipped">
+                                <!-- Back of Card -->
+                                <div class="card-face card-back bg-gradient-to-br from-coral-500 to-coral-600 border-2 border-white/20 p-6 flex flex-col items-center justify-center text-center shadow-xl">
+                                    <div class="w-16 h-16 rounded-2xl bg-white/20 flex items-center justify-center text-3xl text-white mb-4">
+                                        <i class="fa-solid fa-bolt"></i>
+                                    </div>
+                                    <span class="font-display font-extrabold text-lg tracking-wider uppercase text-white">Challenge</span>
+                                    <span class="text-xs text-white/80 mt-1">Tap to reveal</span>
+                                </div>
+
+                                <!-- Front of Card -->
+                                <div class="card-face card-front bg-coral-500 text-white p-6 flex flex-col justify-between shadow-xl border-4 border-marigold-400">
+                                    <div class="flex items-center justify-between">
+                                        <span class="bg-white text-coral-600 text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-full">Challenge</span>
+                                        <span id="chal-difficulty" class="text-xs font-bold text-marigold-300">★ ★ ☆ Fun Twist</span>
+                                    </div>
+                                    <div class="my-auto text-center py-2">
+                                        <div id="chal-emoji" class="text-6xl mb-3 transition-transform group-hover:scale-110">🎭</div>
+                                        <h4 id="chal-title" class="font-display font-extrabold text-2xl text-white mb-2">Like a Shakespearean Actor</h4>
+                                        <p id="chal-desc" class="text-xs text-white/90 leading-relaxed">Speak and gesture with dramatic, poetic flair as if performing at the Globe Theatre!</p>
+                                    </div>
+                                    <div class="pt-3 border-t border-white/20 text-[11px] text-white/90 flex items-center justify-between">
+                                        <span><i class="fa-solid fa-face-laugh-beam mr-1"></i> Bonus points for commitment!</span>
+                                        <span class="font-bold">Tap to flip</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. BREAKING STEREOTYPES & EDUCATIONAL VALUE (PARENT APPEAL) -->
+    <section id="educational-value" class="py-20 bg-cream">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12 items-center mb-16">
+                <div class="lg:col-span-6">
+                    <span class="text-sage-600 font-bold text-xs uppercase tracking-widest">Purposeful Play for Growing Minds</span>
+                    <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-navy-900 mt-2 mb-5 leading-tight">
+                        Challenging Career Stereotypes Before They Take Root.
+                    </h2>
+                    <p class="text-slate-600 text-base leading-relaxed mb-6">
+                        Research shows children begin forming gender-based assumptions about jobs as early as age 6. Our cards intentionally pair diverse, inclusive illustrations and gender-neutral roles across STEM, the arts, trades, and leadership—normalizing that <strong>every career belongs to every kid</strong>.
+                    </p>
+                    
+                    <!-- Stereotype Busting Examples -->
+                    <div class="space-y-3">
+                        <div class="bg-white p-4 rounded-2xl border border-slate-200/80 flex items-start gap-3.5 shadow-sm">
+                            <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center shrink-0 font-bold text-lg">🩰</div>
+                            <div>
+                                <h4 class="font-bold text-navy-900 text-sm">Representation Across Every Field</h4>
+                                <p class="text-xs text-slate-600 mt-0.5">From male ballet dancers and nurses to female construction foremen and aerospace engineers, kids see themselves in every deck.</p>
+                            </div>
+                        </div>
+                        <div class="bg-white p-4 rounded-2xl border border-slate-200/80 flex items-start gap-3.5 shadow-sm">
+                            <div class="w-10 h-10 rounded-xl bg-sky-100 text-sky-700 flex items-center justify-center shrink-0 font-bold text-lg">🗣️</div>
+                            <div>
+                                <h4 class="font-bold text-navy-900 text-sm">Confidence & Communication Skills</h4>
+                                <p class="text-xs text-slate-600 mt-0.5">Acting under playful constraints builds public speaking confidence, quick thinking, and emotional empathy in a zero-pressure family setting.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: 4 "Why Parents Love It" Pillars -->
+                <div class="lg:col-span-6 grid sm:grid-cols-2 gap-5">
+                    <div class="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow">
+                        <div class="w-12 h-12 rounded-2xl bg-coral-500/10 text-coral-500 flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-mobile-screen-button"></i>
+                        </div>
+                        <h3 class="font-display font-bold text-lg text-navy-900 mb-2">100% Screen-Free Bonding</h3>
+                        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">Replaces passive tablet scrolling with lively living-room laughter across siblings, parents, and grandparents.</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow">
+                        <div class="w-12 h-12 rounded-2xl bg-navy-900/10 text-navy-900 flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-compass"></i>
+                        </div>
+                        <h3 class="font-display font-bold text-lg text-navy-900 mb-2">Early Career Discovery</h3>
+                        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">Introduces 50+ real-world professions—from Marine Biologist to Sound Engineer—expanding kids' future horizons.</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow">
+                        <div class="w-12 h-12 rounded-2xl bg-marigold-400/20 text-amber-700 flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-heart"></i>
+                        </div>
+                        <h3 class="font-display font-bold text-lg text-navy-900 mb-2">Empathy & Perspective</h3>
+                        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">Stepping into someone else's shoes teaches kids respect for all types of workers, from paramedics to pastry chefs.</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow">
+                        <div class="w-12 h-12 rounded-2xl bg-sage-100 text-sage-600 flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-suitcase"></i>
+                        </div>
+                        <h3 class="font-display font-bold text-lg text-navy-900 mb-2">Pocket-Sized Portability</h3>
+                        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">Compact tuck-box fits effortlessly in school bags, restaurant totes, or holiday luggage for instant fun anywhere.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. ECO-FRIENDLY & ACCESSIBLE £6.99 VALUE -->
+    <section id="eco-value" class="py-20 bg-sage-100/60 border-y border-sage-500/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-[2.5rem] p-8 sm:p-12 lg:p-16 shadow-xl border border-sage-500/20">
+                <div class="grid lg:grid-cols-12 gap-10 items-center">
+                    <div class="lg:col-span-7">
+                        <div class="inline-flex items-center gap-2 bg-sage-100 text-sage-600 px-3.5 py-1.5 rounded-full text-xs font-extrabold uppercase tracking-wider mb-5">
+                            <i class="fa-solid fa-leaf"></i>
+                            <span>Planet-First Engineering</span>
+                        </div>
+                        <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-navy-900 mb-4">
+                            100% Recycled Materials. <br>
+                            Unbeatable <span class="text-sage-600">£6.99</span> Price Point.
+                        </h2>
+                        <p class="text-slate-600 text-base leading-relaxed mb-8">
+                            Educational toys shouldn't cost a fortune or harm the planet your kids will inherit. By eliminating plastic shrink-wrap, bulky rigid boxes, and virgin cardstock, we pass the savings directly to families—making meaningful play accessible at just <strong>£6.99</strong>.
+                        </p>
+
+                        <div class="grid sm:grid-cols-3 gap-4 mb-8">
+                            <div class="p-4 rounded-2xl bg-cream border border-slate-200/70">
+                                <i class="fa-solid fa-tree text-sage-600 text-xl mb-2"></i>
+                                <h4 class="font-bold text-navy-900 text-sm">FSC 100% Recycled</h4>
+                                <p class="text-xs text-slate-500 mt-1">Thick 350gsm post-consumer recycled card stock built to survive enthusiastic play.</p>
+                            </div>
+                            <div class="p-4 rounded-2xl bg-cream border border-slate-200/70">
+                                <i class="fa-solid fa-droplet text-sky-600 text-xl mb-2"></i>
+                                <h4 class="font-bold text-navy-900 text-sm">Soy-Based Inks</h4>
+                                <p class="text-xs text-slate-500 mt-1">Vibrant, non-toxic vegetable and soy inks that allow effortless future recycling.</p>
+                            </div>
+                            <div class="p-4 rounded-2xl bg-cream border border-slate-200/70">
+                                <i class="fa-solid fa-box-open text-amber-600 text-xl mb-2"></i>
+                                <h4 class="font-bold text-navy-900 text-sm">Zero Plastic Packaging</h4>
+                                <p class="text-xs text-slate-500 mt-1">Sealed with a biodegradable paper tamper sticker—zero cellophane or plastic trays.</p>
+                            </div>
+                        </div>
+
+                        <button onclick="openCartDrawer()" class="bg-sage-600 hover:bg-sage-500 text-white font-bold px-7 py-3.5 rounded-xl shadow-md transition-all inline-flex items-center gap-2">
+                            <span>Grab a Recycled Deck — £6.99</span>
+                            <i class="fa-solid fa-arrow-right text-sm"></i>
+                        </button>
+                    </div>
+
+                    <!-- Price Comparison / Value Card -->
+                    <div class="lg:col-span-5">
+                        <div class="bg-navy-900 text-white rounded-3xl p-8 relative overflow-hidden shadow-xl">
+                            <div class="absolute -right-8 -top-8 w-32 h-32 bg-sage-500/20 rounded-full blur-2xl"></div>
+                            <span class="text-xs uppercase tracking-widest text-marigold-400 font-bold">First Edition Launch Price</span>
+                            <div class="flex items-baseline gap-2 mt-2 mb-4">
+                                <span class="font-display font-extrabold text-5xl sm:text-6xl text-white">£6.99</span>
+                                <span class="text-slate-400 text-sm font-medium">/ complete 100-card deck</span>
+                            </div>
+                            <p class="text-sm text-slate-300 mb-6 pb-6 border-b border-white/10">
+                                Everything needed for hours of screen-free family entertainment, sustainably produced in the UK.
+                            </p>
+                            <ul class="space-y-3 text-sm mb-8">
+                                <li class="flex items-center gap-3">
+                                    <i class="fa-solid fa-circle-check text-sage-500"></i>
+                                    <span>50 Diverse Profession Cards</span>
+                                </li>
+                                <li class="flex items-center gap-3">
+                                    <i class="fa-solid fa-circle-check text-sage-500"></i>
+                                    <span>50 Hilarious Challenge Cards</span>
+                                </li>
+                                <li class="flex items-center gap-3">
+                                    <i class="fa-solid fa-circle-check text-sage-500"></i>
+                                    <span>Quick-Start Rules & Educator Guide</span>
+                                </li>
+                                <li class="flex items-center gap-3">
+                                    <i class="fa-solid fa-circle-check text-sage-500"></i>
+                                    <span>100% Plastic-Free Recycled Tuck Box</span>
+                                </li>
+                            </ul>
+                            <button onclick="openCartDrawer()" class="w-full bg-coral-500 hover:bg-coral-600 text-white font-bold py-4 rounded-2xl shadow-lg transition-all">
+                                Reserve First Edition (£6.99)
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. INVESTOR CORNER (B2B & GROWTH APPEAL) -->
+    <section id="investors" class="py-20 bg-navy-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14 pb-8 border-b border-white/10">
+                <div>
+                    <div class="inline-flex items-center gap-2 bg-marigold-400/15 text-marigold-400 border border-marigold-400/30 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-3">
+                        <i class="fa-solid fa-chart-pie"></i>
+                        <span>Investor & Retail Partner Corner</span>
+                    </div>
+                    <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-white">
+                        Built for High-Margin Retail & Scalable IP.
+                    </h2>
+                </div>
+                <button onclick="openInvestorModal()" class="bg-marigold-400 hover:bg-marigold-500 text-navy-900 font-display font-extrabold text-sm sm:text-base px-6 py-3.5 rounded-xl shadow-lg transition-all shrink-0 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-file-invoice-dollar"></i>
+                    <span>Request Investor Brief & Deck</span>
+                </button>
+            </div>
+
+            <!-- 3 Strategic Pillars for Investors -->
+            <div class="grid lg:grid-cols-3 gap-8 mb-12">
+                <!-- Pillar 1: Market Opportunity -->
+                <div class="bg-white/5 border border-white/10 rounded-3xl p-7 hover:bg-white/[0.07] transition-colors">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs font-bold uppercase tracking-wider text-sky-400">01 / Market Opportunity</span>
+                        <i class="fa-solid fa-globe text-sky-400 text-xl"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-xl mb-3">EdTech Meets Tabletop Boom</h3>
+                    <p class="text-sm text-slate-300 leading-relaxed mb-5">
+                        Parents are actively seeking screen-free educational alternatives, driving sustained growth in family card games and ESG-compliant children's products.
+                    </p>
+                    <div class="grid grid-cols-2 gap-3 pt-4 border-t border-white/10">
+                        <div>
+                            <span class="block font-display font-extrabold text-2xl text-white">£6.99</span>
+                            <span class="text-xs text-slate-400">Impulse-Buy Price Tier</span>
+                        </div>
+                        <div>
+                            <span class="block font-display font-extrabold text-2xl text-marigold-400">B2C + B2B</span>
+                            <span class="text-xs text-slate-400">Direct, Retail & Schools</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pillar 2: Unit Economics -->
+                <div class="bg-white/5 border border-white/10 rounded-3xl p-7 hover:bg-white/[0.07] transition-colors">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs font-bold uppercase tracking-wider text-sage-500">02 / Unit Economics</span>
+                        <i class="fa-solid fa-coins text-sage-500 text-xl"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-xl mb-3">Lean Local Recycled Print</h3>
+                    <p class="text-sm text-slate-300 leading-relaxed mb-5">
+                        Standardized recycled tuck-box printing eliminates tooling molds, reduces freight weight by 40%, and protects healthy wholesale and D2C margins even at £6.99 RRP.
+                    </p>
+                    <div class="grid grid-cols-2 gap-3 pt-4 border-t border-white/10">
+                        <div>
+                            <span class="block font-display font-extrabold text-2xl text-white">~68%+</span>
+                            <span class="text-xs text-slate-400">Target D2C Gross Margin</span>
+                        </div>
+                        <div>
+                            <span class="block font-display font-extrabold text-2xl text-sage-500">Zero</span>
+                            <span class="text-xs text-slate-400">Custom Plastic Tooling</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pillar 3: IP Scalability -->
+                <div class="bg-white/5 border border-white/10 rounded-3xl p-7 hover:bg-white/[0.07] transition-colors">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs font-bold uppercase tracking-wider text-coral-500">03 / Franchise Scalability</span>
+                        <i class="fa-solid fa-layer-group text-coral-500 text-xl"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-xl mb-3">Modular Expansion Ecosystem</h3>
+                    <p class="text-sm text-slate-300 leading-relaxed mb-5">
+                        Our dual-deck engine supports rapid low-cost booster packs, school curriculum editions, and co-branded corporate/charity editions.
+                    </p>
+                    <div class="flex flex-wrap gap-2 pt-4 border-t border-white/10">
+                        <span class="text-xs bg-white/10 px-2.5 py-1 rounded-lg font-medium">🚀 STEM Booster</span>
+                        <span class="text-xs bg-white/10 px-2.5 py-1 rounded-lg font-medium">🎨 Creative Arts</span>
+                        <span class="text-xs bg-white/10 px-2.5 py-1 rounded-lg font-medium">🏛️ Historical Icons</span>
+                        <span class="text-xs bg-white/10 px-2.5 py-1 rounded-lg font-medium">🏫 Classroom Pack</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Brand Naming & Roadmap Callout -->
+            <div class="bg-gradient-to-r from-navy-800 to-slate-800 border border-white/15 rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="flex items-start sm:items-center gap-4">
+                    <div class="w-12 h-12 rounded-2xl bg-marigold-400 text-navy-900 flex items-center justify-center text-xl font-bold shrink-0">
+                        <i class="fa-solid fa-rocket"></i>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <h4 class="font-display font-bold text-lg text-white">Pre-Launch Brand Status: Final Title Trademarking</h4>
+                            <span class="hidden sm:inline-block text-[10px] font-bold uppercase bg-coral-500 text-white px-2 py-0.5 rounded-full">Seed Stage</span>
+                        </div>
+                        <p class="text-sm text-slate-300 mt-1">
+                            Currently completing playtesting focus groups and trademark clearance ahead of our official brand reveal and Q3 retail rollout.
+                        </p>
+                    </div>
+                </div>
+                <button onclick="openInvestorModal()" class="w-full md:w-auto whitespace-nowrap bg-white text-navy-900 hover:bg-slate-100 font-bold text-sm px-6 py-3 rounded-xl transition-colors">
+                    Connect With Founders
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-cream border-t border-slate-200 py-12 text-slate-600">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-xl bg-navy-900 text-white flex items-center justify-center font-display font-extrabold text-lg">?</div>
+                <div>
+                    <span class="font-display font-extrabold text-navy-900">WHO'S NEXT?</span>
+                    <span class="text-xs text-slate-500 block">Placeholder Title • Official Name Reveal Coming Soon</span>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-6 text-xs sm:text-sm font-medium">
+                <a href="#how-to-play" class="hover:text-navy-900">Virtual Demo</a>
+                <a href="#educational-value" class="hover:text-navy-900">Educational Mission</a>
+                <a href="#eco-value" class="hover:text-navy-900">100% Recycled</a>
+                <button onclick="openInvestorModal()" class="hover:text-navy-900 font-semibold text-navy-900">Investor Relations</button>
+            </div>
+
+            <p class="text-xs text-slate-400">
+                &copy; 2026 Project Who's Next Ltd. Sustainably Printed in the UK.
+            </p>
+        </div>
+    </footer>
+
+    <!-- ========================================== -->
+    <!-- 6. SLIDE-OVER PRE-ORDER CART DRAWER        -->
+    <!-- ========================================== -->
+    <div id="cart-drawer-backdrop" onclick="closeCartDrawer()" class="fixed inset-0 bg-navy-900/60 backdrop-blur-sm z-50 hidden transition-opacity"></div>
+    <aside id="cart-drawer" class="fixed top-0 right-0 h-full w-full max-w-md bg-white z-50 shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col justify-between">
+        <!-- Drawer Header -->
+        <div class="p-6 border-b border-slate-200 flex items-center justify-between bg-cream">
+            <div>
+                <h3 class="font-display font-extrabold text-xl text-navy-900">Your Pre-Order Bag</h3>
+                <p class="text-xs text-slate-500">First Edition Recycled Deck • Ships Plastic-Free</p>
+            </div>
+            <button onclick="closeCartDrawer()" class="w-9 h-9 rounded-full bg-slate-200/70 hover:bg-slate-200 text-slate-700 flex items-center justify-center transition-colors">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <!-- Drawer Body -->
+        <div id="cart-body" class="p-6 overflow-y-auto flex-1 space-y-6">
+            <!-- Product Item Card -->
+            <div class="bg-cream rounded-2xl p-4 border border-slate-200 flex gap-4 items-center">
+                <div class="w-20 h-24 rounded-xl bg-navy-900 text-white flex flex-col items-center justify-center shrink-0 p-2 text-center shadow">
+                    <span class="text-2xl font-display font-extrabold text-marigold-400">?</span>
+                    <span class="text-[9px] uppercase tracking-wider font-bold mt-1">1st Ed.</span>
+                </div>
+                <div class="flex-1">
+                    <div class="flex items-start justify-between gap-2">
+                        <h4 class="font-display font-bold text-navy-900 text-sm sm:text-base">WHO'S NEXT? Card Game</h4>
+                        <span class="font-display font-extrabold text-navy-900">£6.99</span>
+                    </div>
+                    <p class="text-xs text-slate-500 mt-0.5">100 Cards (Profession + Challenge Decks) • 100% Recycled FSC Card</p>
+                    
+                    <!-- Quantity Controls -->
+                    <div class="flex items-center justify-between mt-3">
+                        <div class="inline-flex items-center bg-white border border-slate-300 rounded-lg">
+                            <button onclick="updateQty(-1)" class="px-2.5 py-1 text-slate-600 hover:text-navy-900 font-bold">-</button>
+                            <span id="cart-qty" class="px-3 py-1 text-sm font-bold text-navy-900">1</span>
+                            <button onclick="updateQty(1)" class="px-2.5 py-1 text-slate-600 hover:text-navy-900 font-bold">+</button>
+                        </div>
+                        <span class="text-[11px] font-semibold text-sage-600 bg-sage-100 px-2 py-0.5 rounded-full">In Stock for Pre-Order</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Eco-Impact Badge inside Cart -->
+            <div class="bg-sage-100/70 border border-sage-500/20 rounded-2xl p-4 flex items-center gap-3">
+                <i class="fa-solid fa-seedling text-sage-600 text-xl"></i>
+                <p class="text-xs text-slate-700 leading-relaxed">
+                    <strong>Zero-Plastic Guarantee:</strong> Your order ships in a 100% recycled kraft mailer with water-activated paper tape.
+                </p>
+            </div>
+
+            <!-- Pre-Order Email Input -->
+            <div>
+                <label for="customer-email" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">Email for Dispatch & Name Reveal Updates</label>
+                <input type="email" id="customer-email" placeholder="parent@example.co.uk" class="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm focus:outline-none focus:border-navy-900">
+            </div>
+        </div>
+
+        <!-- Drawer Footer / Order Summary -->
+        <div id="cart-footer" class="p-6 border-t border-slate-200 bg-cream space-y-4">
+            <div class="space-y-1.5 text-sm">
+                <div class="flex justify-between text-slate-600">
+                    <span>Subtotal (<span id="summary-qty">1</span> deck)</span>
+                    <span id="summary-subtotal">£6.99</span>
+                </div>
+                <div class="flex justify-between text-slate-600">
+                    <span>UK Carbon-Neutral Delivery</span>
+                    <span id="summary-shipping" class="font-semibold text-sage-600">£1.99</span>
+                </div>
+                <div class="flex justify-between font-display font-extrabold text-lg text-navy-900 pt-2 border-t border-slate-200">
+                    <span>Total</span>
+                    <span id="summary-total">£8.98</span>
+                </div>
+            </div>
+
+            <button onclick="completePreOrder()" class="w-full bg-coral-500 hover:bg-coral-600 text-white font-display font-extrabold py-4 rounded-2xl shadow-lg shadow-coral-500/25 transition-all active:scale-95">
+                Complete Pre-Order Reservation
+            </button>
+            <p class="text-[11px] text-center text-slate-500">No payment taken until official title reveal & dispatch confirmation.</p>
+        </div>
+    </aside>
+
+    <!-- ========================================== -->
+    <!-- INVESTOR BRIEF MODAL                       -->
+    <!-- ========================================== -->
+    <div id="investor-modal" class="fixed inset-0 bg-navy-900/75 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative animate-fade-in">
+            <button onclick="closeInvestorModal()" class="absolute top-5 right-5 w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div id="investor-form-container">
+                <span class="inline-block bg-navy-900 text-marigold-400 text-[10px] font-extrabold uppercase tracking-wider px-3 py-1 rounded-full mb-3">
+                    Investor & Retail Access
+                </span>
+                <h3 class="font-display font-extrabold text-2xl text-navy-900 mb-2">Request Investor Pitch Deck</h3>
+                <p class="text-sm text-slate-600 mb-6">
+                    Receive our full financial model, manufacturing quotes, playtesting traction report, and upcoming brand reveal timeline.
+                </p>
+
+                <form onsubmit="submitInvestorForm(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Full Name *</label>
+                        <input type="text" required placeholder="Alex Morgan" class="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm focus:outline-none focus:border-navy-900">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Work Email *</label>
+                        <input type="email" required placeholder="alex@venturefund.co.uk" class="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm focus:outline-none focus:border-navy-900">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Enquiry Type</label>
+                        <select class="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm bg-white focus:outline-none focus:border-navy-900">
+                            <option>Angel / Seed Investment</option>
+                            <option>Retail / Toy Buyer Distribution</option>
+                            <option>School / Educational Bulk Partnership</option>
+                            <option>Press / Media Inquiry</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="w-full bg-navy-900 hover:bg-navy-800 text-white font-display font-bold py-3.5 rounded-xl shadow-lg transition-all">
+                        Send Me the Investor Brief
+                    </button>
+                </form>
+            </div>
+
+            <!-- Success State (Hidden initially) -->
+            <div id="investor-success-state" class="hidden text-center py-6">
+                <div class="w-16 h-16 rounded-full bg-sage-100 text-sage-600 flex items-center justify-center text-3xl mx-auto mb-4">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <h4 class="font-display font-extrabold text-2xl text-navy-900 mb-2">Brief Requested!</h4>
+                <p class="text-sm text-slate-600 mb-6">
+                    Thank you! Our founding team has logged your request and will send the PDF Pitch Deck & Unit Economics breakdown shortly.
+                </p>
+                <button onclick="closeInvestorModal()" class="bg-navy-900 text-white font-bold px-6 py-3 rounded-xl text-sm">
+                    Back to Website
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Toast Message Box (Replaces alert()) -->
+    <div id="toast-notification" class="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50 bg-navy-900 text-white px-6 py-3.5 rounded-2xl shadow-2xl border border-white/15 flex items-center gap-3 transition-all duration-300 opacity-0 pointer-events-none translate-y-4">
+        <i class="fa-solid fa-circle-check text-marigold-400 text-lg"></i>
+        <span id="toast-message" class="text-sm font-medium">Action completed!</span>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- INTERACTIVE JAVASCRIPT                     -->
+    <!-- ========================================== -->
+    <script>
+        // 1. VIRTUAL HAND CARD DATASETS
+        const professions = [
+            {
+                title: "Neurosurgeon",
+                category: "STEM & Medicine",
+                emoji: "🧠",
+                desc: "Performs delicate operations on the human brain and nervous system."
+            },
+            {
+                title: "Ballet Dancer",
+                category: "Performing Arts",
+                emoji: "🩰",
+                desc: "Tells powerful stories on stage through athleticism, balance, and grace."
+            },
+            {
+                title: "Construction Foreman",
+                category: "Engineering & Trades",
+                emoji: "👷‍♀️",
+                desc: "Leads building crews, reads blueprints, and keeps skyscraper sites safe."
+            },
+            {
+                title: "Pastry Chef",
+                category: "Culinary Arts",
+                emoji: "🥐",
+                desc: "Crafts intricate desserts, breads, and chocolate sculptures with precision."
+            },
+            {
+                title: "Rocket Engineer",
+                category: "Aerospace & STEM",
+                emoji: "🚀",
+                desc: "Designs spacecraft propulsion systems and calculates orbital trajectories."
+            },
+            {
+                title: "Fashion Designer",
+                category: "Design & Textiles",
+                emoji: "🧵",
+                desc: "Sketches sustainable clothing lines, drapes fabrics, and directs runway shows."
+            },
+            {
+                title: "Marine Biologist",
+                category: "Ocean Science",
+                emoji: "🐙",
+                desc: "Dives beneath the waves to study coral reefs and protect ocean wildlife."
+            },
+            {
+                title: "Orchestra Conductor",
+                category: "Music & Leadership",
+                emoji: "🎼",
+                desc: "Guides 80 musicians in harmony using expressive baton movements."
+            }
+        ];
+
+        const challenges = [
+            {
+                title: "In Slow Motion",
+                difficulty: "★ ★ ☆ Fun Twist",
+                emoji: "🐢",
+                desc: "Perform every movement and facial expression at 0.25x ultra-slow speed!"
+            },
+            {
+                title: "Without Using Your Hands",
+                difficulty: "★ ★ ★ Tricky!",
+                emoji: "🙌",
+                desc: "Keep both hands tucked behind your back for the entire round."
+            },
+            {
+                title: "Like a Shakespearean Actor",
+                difficulty: "★ ★ ☆ Dramatic",
+                emoji: "🎭",
+                desc: "Act with grand, poetic theatrical flair as if performing at the Globe Theatre!"
+            },
+            {
+                title: "Balancing on One Foot",
+                difficulty: "★ ★ ☆ Active",
+                emoji: "🦩",
+                desc: "Keep one foot off the floor the entire time while acting out your job."
+            },
+            {
+                title: "Only Speaking in Questions",
+                difficulty: "★ ★ ★ Brainteaser",
+                emoji: "❓",
+                desc: "Every clue you say aloud must be phrased as a question. No statements allowed!"
+            },
+            {
+                title: "Like a Robot Low on Battery",
+                difficulty: "★ ★ ☆ Hilarious",
+                emoji: "🤖",
+                desc: "Move in stiff mechanical jerks that gradually wind down as the timer ticks."
+            }
+        ];
+
+        let currentProfIndex = 0;
+        let currentChalIndex = 2;
+
+        // Draw a new random pair with smooth 3D flip animation
+        function drawVirtualHand() {
+            const profInner = document.getElementById('prof-card-inner');
+            const chalInner = document.getElementById('chal-card-inner');
+
+            // Flip cards face-down first
+            profInner.classList.remove('card-flipped');
+            chalInner.classList.remove('card-flipped');
+
+            // Pick new distinct random indices
+            let newProfIdx;
+            do {
+                newProfIdx = Math.floor(Math.random() * professions.length);
+            } while (newProfIdx === currentProfIndex);
+            currentProfIndex = newProfIdx;
+
+            let newChalIdx;
+            do {
+                newChalIdx = Math.floor(Math.random() * challenges.length);
+            } while (newChalIdx === currentChalIndex);
+            currentChalIndex = newChalIdx;
+
+            const p = professions[currentProfIndex];
+            const c = challenges[currentChalIndex];
+
+            // Swap content mid-flip and reveal
+            setTimeout(() => {
+                document.getElementById('prof-category').textContent = p.category;
+                document.getElementById('prof-emoji').textContent = p.emoji;
+                document.getElementById('prof-title').textContent = p.title;
+                document.getElementById('prof-desc').textContent = p.desc;
+
+                document.getElementById('chal-difficulty').textContent = c.difficulty;
+                document.getElementById('chal-emoji').textContent = c.emoji;
+                document.getElementById('chal-title').textContent = c.title;
+                document.getElementById('chal-desc').textContent = c.desc;
+
+                // Update combined prompt summary
+                const promptBox = document.getElementById('combo-prompt-box');
+                const promptText = document.getElementById('combo-prompt-text');
+                promptBox.classList.remove('hidden');
+                promptText.innerHTML = `Act like a <span class="text-sky-300 font-bold">${p.title}</span> — <span class="text-coral-400 font-bold">${c.title}</span>!`;
+
+                // Flip back to front
+                profInner.classList.add('card-flipped');
+                setTimeout(() => {
+                    chalInner.classList.add('card-flipped');
+                }, 120);
+            }, 320);
+        }
+
+        function toggleSingleCard(type) {
+            const el = document.getElementById(type === 'prof' ? 'prof-card-inner' : 'chal-card-inner');
+            el.classList.toggle('card-flipped');
+        }
+
+        function flipAllCards() {
+            const profInner = document.getElementById('prof-card-inner');
+            const chalInner = document.getElementById('chal-card-inner');
+            const shouldFlipFront = !profInner.classList.contains('card-flipped');
+            
+            if (shouldFlipFront) {
+                profInner.classList.add('card-flipped');
+                chalInner.classList.add('card-flipped');
+            } else {
+                profInner.classList.remove('card-flipped');
+                chalInner.classList.remove('card-flipped');
+            }
+        }
+
+        // 2. PRE-ORDER CART DRAWER LOGIC
+        let cartQuantity = 1;
+        const unitPrice = 6.99;
+
+        function openCartDrawer() {
+            document.getElementById('cart-drawer-backdrop').classList.remove('hidden');
+            document.getElementById('cart-drawer').classList.remove('translate-x-full');
+            updateCartTotals();
+        }
+
+        function closeCartDrawer() {
+            document.getElementById('cart-drawer-backdrop').classList.add('hidden');
+            document.getElementById('cart-drawer').classList.add('translate-x-full');
+        }
+
+        function updateQty(delta) {
+            cartQuantity = Math.max(1, Math.min(20, cartQuantity + delta));
+            updateCartTotals();
+        }
+
+        function updateCartTotals() {
+            document.getElementById('cart-qty').textContent = cartQuantity;
+            document.getElementById('summary-qty').textContent = cartQuantity;
+            
+            const badge = document.getElementById('nav-cart-badge');
+            badge.textContent = cartQuantity;
+            badge.classList.remove('hidden');
+
+            const subtotal = cartQuantity * unitPrice;
+            // Free shipping on 3+ decks (£20+)
+            const shipping = subtotal >= 20 ? 0 : 1.99;
+            const total = subtotal + shipping;
+
+            document.getElementById('summary-subtotal').textContent = `£${subtotal.toFixed(2)}`;
+            document.getElementById('summary-shipping').textContent = shipping === 0 ? 'FREE' : `£${shipping.toFixed(2)}`;
+            document.getElementById('summary-total').textContent = `£${total.toFixed(2)}`;
+        }
+
+        function completePreOrder() {
+            const emailInput = document.getElementById('customer-email');
+            const emailVal = emailInput.value.trim();
+
+            if (!emailVal || !emailVal.includes('@')) {
+                showToast("Please enter a valid email address to reserve your deck.");
+                emailInput.focus();
+                return;
+            }
+
+            closeCartDrawer();
+            emailInput.value = '';
+            showToast(`Pre-order reserved for ${cartQuantity} deck(s)! Confirmation sent to ${emailVal}.`);
+        }
+
+        // 3. INVESTOR BRIEF MODAL LOGIC
+        function openInvestorModal() {
+            document.getElementById('investor-form-container').classList.remove('hidden');
+            document.getElementById('investor-success-state').classList.add('hidden');
+            document.getElementById('investor-modal').classList.remove('hidden');
+        }
+
+        function closeInvestorModal() {
+            document.getElementById('investor-modal').classList.add('hidden');
+        }
+
+        function submitInvestorForm(e) {
+            e.preventDefault();
+            document.getElementById('investor-form-container').classList.add('hidden');
+            document.getElementById('investor-success-state').classList.remove('hidden');
+        }
+
+        // 4. TOAST NOTIFICATION SYSTEM
+        let toastTimeout;
+        function showToast(msg) {
+            const toast = document.getElementById('toast-notification');
+            document.getElementById('toast-message').textContent = msg;
+            toast.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4');
+            
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                toast.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4');
+            }, 4000);
+        }
+
+        // Initialize prompt box on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            const p = professions[currentProfIndex];
+            const c = challenges[currentChalIndex];
+            const promptBox = document.getElementById('combo-prompt-box');
+            const promptText = document.getElementById('combo-prompt-text');
+            promptBox.classList.remove('hidden');
+            promptText.innerHTML = `Act like a <span class="text-sky-300 font-bold">${p.title}</span> — <span class="text-coral-400 font-bold">${c.title}</span>!`;
+        });
+    </script>
+</body>
+</html>
