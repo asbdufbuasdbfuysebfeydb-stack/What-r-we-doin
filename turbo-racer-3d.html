@@ -1,86 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Turbo Racer 3D</title>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>City Explorer 3D</title>
 <style>
-*{box-sizing:border-box}body{margin:0;background:#101827;color:#fff;font-family:system-ui,sans-serif;display:flex;justify-content:center;min-height:100vh;padding:18px}
-main{width:min(100%,650px);text-align:center}.stats{display:flex;justify-content:space-between;max-width:620px;margin:0 auto 10px}.stats small{display:block;color:#bdc7d5}.stats strong{font-size:1.45rem}
-#stage{position:relative;width:100%;height:min(70vh,650px);min-height:440px;border:3px solid #64748b;border-radius:16px;overflow:hidden;background:#87ceeb}
-#game{width:100%;height:100%;display:block;touch-action:none}
-#overlay{position:absolute;inset:0;background:#07111dcc;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:22px}
-h1{margin:8px 0;font-size:clamp(1.8rem,6vw,2.6rem)}p{margin:8px 0 20px;color:#e2e8f0}
-button{border:0;border-radius:12px;padding:13px 22px;font-size:1rem;font-weight:850;background:#2563eb;color:white;cursor:pointer;touch-action:manipulation}
-.controls{display:flex;justify-content:center;gap:28px;margin:12px}.controls button{font-size:1.5rem;min-width:92px;background:#3b4656}
-.hint{font-size:.9rem;color:#cbd5e1;margin:8px}
-</style>
-</head>
+*{box-sizing:border-box}body{margin:0;background:#101827;color:#fff;font-family:system-ui,Arial,sans-serif;overflow:hidden}
+#game{position:fixed;inset:0;width:100%;height:100%;display:block;touch-action:none}
+#hud{position:fixed;top:12px;left:12px;right:12px;display:flex;justify-content:space-between;gap:8px;pointer-events:none}
+.panel{background:#101827cc;border:1px solid #ffffff30;border-radius:12px;padding:9px 12px;font-size:12px}.panel strong{font-size:17px;display:block}
+#help{position:fixed;left:50%;bottom:12px;transform:translateX(-50%);width:min(94vw,650px);text-align:center;background:#101827cc;border:1px solid #ffffff30;border-radius:12px;padding:9px;font-size:12px;pointer-events:none}
+#overlay{position:fixed;inset:0;background:#07111ddd;display:flex;align-items:center;justify-content:center;padding:20px;text-align:center}
+.card{max-width:470px;background:#172337;border:1px solid #ffffff30;border-radius:20px;padding:26px;box-shadow:0 20px 60px #0008}
+button{background:#2563eb;color:white;border:0;border-radius:12px;padding:13px 20px;font-weight:800;font-size:16px;cursor:pointer}
+#mobile{position:fixed;bottom:65px;left:0;right:0;display:flex;justify-content:space-between;padding:0 16px;pointer-events:none}
+.pad{display:grid;grid-template-columns:repeat(3,46px);gap:5px;pointer-events:auto}
+.pad button,.action{padding:10px 0;background:#26364dcc;border:1px solid #ffffff55;font-size:19px;touch-action:none}
+.action{width:68px;height:50px;margin:4px;font-size:11px}
+</style></head>
 <body>
-<main>
-<h1>🏁 TURBO RACER 3D</h1>
-<div class="stats">
-<div><small>SCORE</small><strong id="score">0</strong></div>
-<div><small>BEST</small><strong id="best">0</strong></div>
-<div><small>SPEED</small><strong id="speed">1x</strong></div>
-</div>
-<div id="stage">
 <canvas id="game"></canvas>
-<div id="overlay"><div style="font-size:3.5rem">🏎️</div><h1>3D TURBO RACER</h1><p>Dodge traffic on a 3D highway!</p><button id="start">START RACE 🏁</button></div>
-</div>
-<div class="controls"><button id="left" aria-label="Steer left">⬅️</button><button id="right" aria-label="Steer right">➡️</button></div>
-<div class="hint">Use ← → or A / D keys, or the buttons to steer.</div>
-<div class="hint" id="status">Ready to race</div>
-</main>
+<div id="hud"><div class="panel">CITY EXPLORER<strong id="mode">ON FOOT</strong></div><div class="panel">TOKENS<strong id="tokens">0 / 12</strong></div><div class="panel">MISSION<strong id="mission">Find blue markers</strong></div></div>
+<div id="mobile"><div class="pad"><span></span><button data-key="w">▲</button><span></span><button data-key="a">◀</button><button data-key="s">▼</button><button data-key="d">▶</button></div><div><button class="action" id="switch">ENTER / EXIT</button><br><button class="action" data-key="shift">BOOST</button></div></div>
+<div id="help">WASD / arrows: move · E: enter or exit car · Shift: boost · Collect all 12 glowing tokens</div>
+<div id="overlay"><div class="card"><div style="font-size:55px">🌆🚘</div><h1>CITY EXPLORER 3D</h1><p>Explore a colourful open-world city, drive around and collect all 12 glowing tokens.</p><p style="font-size:13px;color:#cbd5e1">An original, family-friendly city adventure.</p><button id="start">ENTER THE CITY</button></div></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
-(() => {
-const canvas=document.getElementById('game'),stage=document.getElementById('stage');
-const overlay=document.getElementById('overlay'),scoreEl=document.getElementById('score'),bestEl=document.getElementById('best'),speedEl=document.getElementById('speed'),statusEl=document.getElementById('status');
-if(!window.THREE){overlay.innerHTML='<h1>Unable to load 3D engine</h1><p>Check your internet connection and reload.</p>';return;}
-const scene=new THREE.Scene();scene.background=new THREE.Color(0x87ceeb);scene.fog=new THREE.Fog(0x87ceeb,35,150);
-const camera=new THREE.PerspectiveCamera(62,1,.1,220);camera.position.set(0,7.5,13);camera.lookAt(0,0,-15);
-const renderer=new THREE.WebGLRenderer({canvas,antialias:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;
-scene.add(new THREE.HemisphereLight(0xffffff,0x527044,1.5));
-const sun=new THREE.DirectionalLight(0xffffff,1.5);sun.position.set(-8,18,10);sun.castShadow=true;scene.add(sun);
-const mat=(color,roughness=.8)=>new THREE.MeshStandardMaterial({color,roughness});
-const roadMat=mat(0x343a40),grassMat=mat(0x31834a),lineMat=mat(0xf4f4f4),dark=mat(0x171b20),glass=mat(0x9ed9e8,.25);
-const road=new THREE.Mesh(new THREE.PlaneGeometry(13,220),roadMat);road.rotation.x=-Math.PI/2;road.position.z=-75;road.receiveShadow=true;scene.add(road);
-const ground=new THREE.Mesh(new THREE.PlaneGeometry(220,240),grassMat);ground.rotation.x=-Math.PI/2;ground.position.set(0,-.08,-75);ground.receiveShadow=true;scene.add(ground);
-for(const x of [-6.35,6.35]){const edge=new THREE.Mesh(new THREE.BoxGeometry(.16,.035,220),lineMat);edge.position.set(x,.025,-75);scene.add(edge);}
-const dashes=[];for(const x of [-2.15,2.15])for(let z=8;z>-210;z-=12){const m=new THREE.Mesh(new THREE.BoxGeometry(.13,.035,5),lineMat);m.position.set(x,.03,z);scene.add(m);dashes.push(m);}
-function makeCar(color){
- const g=new THREE.Group(),body=new THREE.Mesh(new THREE.BoxGeometry(1.55,.55,2.7),mat(color,.35));body.position.y=.62;body.castShadow=true;g.add(body);
- const hood=new THREE.Mesh(new THREE.BoxGeometry(1.35,.18,.72),mat(color,.3));hood.position.set(0,.94,-.78);g.add(hood);
- const cabin=new THREE.Mesh(new THREE.BoxGeometry(1.13,.62,1.22),glass);cabin.position.set(0,1.12,.22);cabin.castShadow=true;g.add(cabin);
- const roof=new THREE.Mesh(new THREE.BoxGeometry(1.1,.12,.95),mat(color,.35));roof.position.set(0,1.45,.22);g.add(roof);
- for(const x of [-.83,.83])for(const z of [-.82,.85]){const w=new THREE.Mesh(new THREE.CylinderGeometry(.28,.28,.18,16),dark);w.rotation.z=Math.PI/2;w.position.set(x,.42,z);g.add(w);}
- for(const x of [-.48,.48]){const lamp=new THREE.Mesh(new THREE.BoxGeometry(.24,.12,.06),mat(0xfff2b0));lamp.position.set(x,.75,-1.37);g.add(lamp);}
- return g;
-}
-const player=makeCar(0x06b6d4);player.position.set(0,0,5);scene.add(player);
-const traffic=[],colors=[0xef4444,0xf59e0b,0xa78bfa,0xf1f5f9,0x22c55e];
-let score=0,best=Number(localStorage.getItem('turboRacer3DBest')||0),speed=19,elapsed=0,running=false,last=0,spawn=0;
-bestEl.textContent=best;const keys={};let steer=0;
-function addTraffic(){const lane=[-4.3,0,4.3][Math.floor(Math.random()*3)],car=makeCar(colors[Math.floor(Math.random()*colors.length)]);car.scale.setScalar(.92);car.position.set(lane,0,-105);scene.add(car);traffic.push(car);}
-function resize(){const w=stage.clientWidth,h=stage.clientHeight;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();}
-new ResizeObserver(resize).observe(stage);resize();
-function end(){running=false;if(score>best){best=score;bestEl.textContent=best;localStorage.setItem('turboRacer3DBest',best);}statusEl.textContent='Race over';overlay.style.display='flex';overlay.innerHTML=`<div style="font-size:3.5rem">💥</div><h1>RACE OVER!</h1><p>Your score: <b>${score}</b><br>Best score: ${best}</p><button id="again">RACE AGAIN 🏁</button>`;document.getElementById('again').onclick=start;}
-function start(){traffic.forEach(c=>scene.remove(c));traffic.length=0;score=0;elapsed=0;spawn=0;speed=19;steer=0;player.position.x=0;running=true;last=0;scoreEl.textContent='0';speedEl.textContent='1x';statusEl.textContent='Racing!';overlay.style.display='none';requestAnimationFrame(loop);}
-function loop(t){if(!running)return;const dt=Math.min((t-last)/1000||.016,.04);last=t;elapsed+=dt;speed=19+Math.min(18,score*.035);steer=(keys.ArrowLeft||keys.a?-1:0)+(keys.ArrowRight||keys.d?1:0);player.position.x=THREE.MathUtils.clamp(player.position.x+steer*9*dt,-4.35,4.35);player.rotation.z=-steer*.09;
-for(const d of dashes){d.position.z+=speed*dt;if(d.position.z>12)d.position.z-=216;}
-spawn-=dt;if(spawn<=0){addTraffic();spawn=Math.max(.65,1.45-score*.0015);}
-for(let i=traffic.length-1;i>=0;i--){const c=traffic[i];c.position.z+=speed*dt;if(c.position.z>15){scene.remove(c);traffic.splice(i,1);score+=10;scoreEl.textContent=score;}
-if(Math.abs(c.position.x-player.position.x)<1.45&&Math.abs(c.position.z-player.position.z)<2.25){end();return;}}
-camera.position.x+=(player.position.x*.28-camera.position.x)*dt*2;camera.lookAt(player.position.x*.18,0,-15);
-speedEl.textContent=(speed/19).toFixed(1)+'x';renderer.render(scene,camera);requestAnimationFrame(loop);}
-document.getElementById('start').onclick=start;
-document.addEventListener('keydown',e=>{if(['ArrowLeft','ArrowRight'].includes(e.key))e.preventDefault();keys[e.key]=true;});
-document.addEventListener('keyup',e=>keys[e.key]=false);
-function hold(id,key){const b=document.getElementById(id);b.addEventListener('pointerdown',e=>{e.preventDefault();keys[key]=true;});['pointerup','pointerleave','pointercancel'].forEach(ev=>b.addEventListener(ev,()=>keys[key]=false));}
-hold('left','ArrowLeft');hold('right','ArrowRight');
-renderer.render(scene,camera);
+(()=>{
+const canvas=document.getElementById('game'),overlay=document.getElementById('overlay');
+if(!window.THREE){overlay.innerHTML='<div class="card"><h2>3D engine could not load</h2><p>Check your internet connection and reload.</p></div>';return;}
+const scene=new THREE.Scene();scene.background=new THREE.Color(0x8bc8ed);scene.fog=new THREE.Fog(0x8bc8ed,65,190);
+const camera=new THREE.PerspectiveCamera(65,innerWidth/innerHeight,.1,400);
+const renderer=new THREE.WebGLRenderer({canvas,antialias:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setSize(innerWidth,innerHeight);renderer.shadowMap.enabled=true;
+scene.add(new THREE.HemisphereLight(0xffffff,0x52634c,1.6));
+const sun=new THREE.DirectionalLight(0xffffff,1.35);sun.position.set(-45,75,35);sun.castShadow=true;scene.add(sun);
+const mat=(c,r=.85)=>new THREE.MeshStandardMaterial({color:c,roughness:r});
+const grass=mat(0x478b52),road=mat(0x343b45),line=mat(0xf4f0d8),glass=mat(0x83c9dd,.35);
+function box(w,h,d,m,x,y,z){const o=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),m);o.position.set(x,y,z);o.castShadow=true;o.receiveShadow=true;scene.add(o);return o;}
+const ground=new THREE.Mesh(new THREE.PlaneGeometry(360,360),grass);ground.rotation.x=-Math.PI/2;ground.position.y=-.12;scene.add(ground);
+for(let i=-4;i<=4;i++){let p=i*32;box(10,.08,300,road,p,0,0);box(300,.08,10,road,0,0,p);box(1,.1,300,line,p-4.7,.06,0);box(1,.1,300,line,p+4.7,.06,0);box(300,.1,1,line,0,.06,p-4.7);box(300,.1,1,line,0,.06,p+4.7);}
+const palettes=[0xd7bda5,0x9eb5c6,0xd1d4d8,0xc8a8a0,0xb7c8a4,0xd8c99e];
+for(let gx=-4;gx<4;gx++)for(let gz=-4;gz<4;gz++){let cx=gx*32+16,cz=gz*32+16;for(let j=0;j<3;j++)for(let k=0;k<3;k++){if(Math.random()<.17)continue;let x=cx+(j-1)*8+(Math.random()-.5)*2,z=cz+(k-1)*8+(Math.random()-.5)*2,w=5+Math.random()*2,d=5+Math.random()*2,h=7+Math.random()*22;box(w,h,d,mat(palettes[Math.floor(Math.random()*palettes.length)]),x,h/2,z);for(let yy=3;yy<h-1;yy+=3.5)for(let xx=-w/2+1;xx<w/2;xx+=2){let win=new THREE.Mesh(new THREE.BoxGeometry(.9,1.35,.07),glass);win.position.set(x+xx,yy,z-d/2-.04);scene.add(win);}}}
+for(let i=0;i<65;i++){let x=(Math.random()-.5)*270,z=(Math.random()-.5)*270;if(Math.abs(x%32)<6||Math.abs(z%32)<6)continue;let tr=new THREE.Mesh(new THREE.CylinderGeometry(.2,.27,2,7),mat(0x765037));tr.position.set(x,1,z);scene.add(tr);let crown=new THREE.Mesh(new THREE.SphereGeometry(1.5,8,7),mat(0x287b43));crown.position.set(x,2.8,z);scene.add(crown);}
+function makeCar(color=0xe23d42){let g=new THREE.Group(),body=new THREE.Mesh(new THREE.BoxGeometry(2.1,.75,4),mat(color,.4));body.position.y=.75;g.add(body);let cabin=new THREE.Mesh(new THREE.BoxGeometry(1.55,.85,1.9),glass);cabin.position.set(0,1.48,.15);g.add(cabin);let roof=new THREE.Mesh(new THREE.BoxGeometry(1.48,.13,1.65),mat(color,.4));roof.position.set(0,1.92,.15);g.add(roof);for(let x of [-1.08,1.08])for(let z of [-1.25,1.25]){let wh=new THREE.Mesh(new THREE.CylinderGeometry(.42,.42,.25,12),mat(0x17191c));wh.rotation.z=Math.PI/2;wh.position.set(x,.43,z);g.add(wh);}return g;}
+const car=makeCar();scene.add(car);
+const person=new THREE.Group();let torso=new THREE.Mesh(new THREE.BoxGeometry(.75,1.05,.45),mat(0x2563eb));torso.position.y=1.25;person.add(torso);let head=new THREE.Mesh(new THREE.SphereGeometry(.34,12,10),mat(0xf0bd91));head.position.y=2.05;person.add(head);for(let x of [-.22,.22]){let leg=new THREE.Mesh(new THREE.BoxGeometry(.22,.8,.25),mat(0x273449));leg.position.set(x,.4,0);person.add(leg);}person.position.set(3,0,0);scene.add(person);
+const tokens=[];for(let i=0;i<12;i++){let x=(Math.floor(i/3)-1.5)*32+16,z=(i%3-1)*32+16;let ring=new THREE.Mesh(new THREE.TorusGeometry(.85,.13,8,24),mat(0x19d8ff,.35));ring.position.set(x,.9,z);ring.rotation.x=Math.PI/2;scene.add(ring);let orb=new THREE.Mesh(new THREE.SphereGeometry(.28,12,10),mat(0x4deaff,.25));orb.position.set(x,1.5,z);scene.add(orb);tokens.push({ring,orb,got:false});}
+let driving=false,started=false,score=0,heading=0,velocity=0,last=0;const keys={};
+const mode=document.getElementById('mode'),tokenText=document.getElementById('tokens'),mission=document.getElementById('mission');
+function active(){return driving?car:person;}
+function switchMode(){if(!started)return;driving=!driving;velocity=0;mode.textContent=driving?'DRIVING':'ON FOOT';}
+document.getElementById('switch').onclick=switchMode;
+document.addEventListener('keydown',e=>{keys[e.key.toLowerCase()]=true;if(e.key.toLowerCase()==='e'&&!e.repeat)switchMode();});
+document.addEventListener('keyup',e=>keys[e.key.toLowerCase()]=false);
+document.querySelectorAll('[data-key]').forEach(b=>{let k=b.dataset.key;b.addEventListener('pointerdown',e=>{e.preventDefault();keys[k]=true;});['pointerup','pointercancel','pointerleave'].forEach(ev=>b.addEventListener(ev,()=>keys[k]=false));});
+function start(){started=true;overlay.style.display='none';last=0;requestAnimationFrame(loop);}document.getElementById('start').onclick=start;
+function move(dt){let obj=active(),forward=(keys.w||keys.arrowup?1:0)-(keys.s||keys.arrowdown?1:0),turn=(keys.a||keys.arrowleft?1:0)-(keys.d||keys.arrowright?1:0);if(driving){velocity+=forward*(keys.shift?27:17)*dt;velocity*=Math.pow(.91,dt*60);velocity=THREE.MathUtils.clamp(velocity,-10,keys.shift?30:22);heading+=turn*dt*(1.5+Math.abs(velocity)*.055)*(velocity<-.2?-1:1);}else{velocity=forward*8;heading+=turn*dt*2.5;}let dir=new THREE.Vector3(Math.sin(heading),0,-Math.cos(heading));obj.position.addScaledVector(dir,velocity*dt);obj.position.x=THREE.MathUtils.clamp(obj.position.x,-145,145);obj.position.z=THREE.MathUtils.clamp(obj.position.z,-145,145);obj.rotation.y=heading;}
+function loop(t){if(!started)return;let dt=Math.min((t-last)/1000||.016,.04);last=t;move(dt);tokens.forEach(tok=>{if(tok.got)return;tok.ring.rotation.z+=dt*1.4;tok.orb.position.y=1.5+Math.sin(t*.003+tok.orb.position.x)*.18;if(active().position.distanceTo(tok.ring.position)<2.2){tok.got=true;scene.remove(tok.ring,tok.orb);score++;tokenText.textContent=score+' / 12';}});if(score===12)mission.textContent='City explorer champion!';let target=active().position.clone(),behind=new THREE.Vector3(Math.sin(heading)*(driving?10:7),driving?6:5,Math.cos(heading)*(driving?10:7));camera.position.lerp(target.clone().add(behind),1-Math.pow(.001,dt));camera.lookAt(target.x,target.y+1.2,target.z);renderer.render(scene,camera);requestAnimationFrame(loop);}
+function resize(){camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);}addEventListener('resize',resize);resize();camera.position.set(0,8,12);camera.lookAt(0,0,0);renderer.render(scene,camera);
 })();
-</script>
-</body>
-</html>
+</script></body></html>
